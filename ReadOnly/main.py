@@ -65,5 +65,5 @@ class ReadOnly(type):
     def __setattr__(self, key: str, value: Any) -> None:
         if not getattr(self, "__affectInherited__") and key in getattr(self, "__inherited__", ()):
             return super().__setattr__(key, value)
-        raise SyntaxError
+        raise SyntaxError(f"Attribute .{key} of {self.__name__} class is {self.__class__.__name__}")
 
