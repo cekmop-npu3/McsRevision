@@ -16,7 +16,7 @@ def annotation(obj: Obj) -> Obj:
 
 
 def isTypedDict(obj: dict, typedDict: Type) -> bool:
-    return isinstance(obj, dict) and is_typeddict(typedDict) and set(obj.keys()).difference(getattr(typedDict, "__required_keys__")).issubset(getattr(typedDict, "__optional_keys__"))
+    return isinstance(obj, dict) and is_typeddict(typedDict) and set(obj).symmetric_difference(getattr(typedDict, "__annotations__")).issubset(getattr(typedDict, "__optional_keys__"))
 
 
 class Field(Generic[Instance, Owner]):
